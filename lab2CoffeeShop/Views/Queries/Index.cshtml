@@ -1,0 +1,303 @@
+﻿@model MyQuery
+
+@{
+    ViewData["Title"] = "Запити";
+}
+
+<h1>Запити</h1>
+<hr />
+
+<h3>Прості</h3>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит 1</b>
+</p>
+<p style="font-size:17px">
+    Знайти назви усіх продуктів, які постачає виробник А:
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Query1">
+            <input type="hidden" asp-for="CoffeeTypeName" value="dummy" />
+            <div class="form-group">
+                <label class="control-label">Назва виробника А</label>
+                <select asp-for="ManufacturerName" asp-items="@ViewBag.ManufacturerNames" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит 2</b>
+</p>
+<p style="font-size:17px">
+    Знайти середню вартість продуктів виробника L.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Query2">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                <label class="control-label">Назва виробника A</label>
+                <select asp-for="ManufacturerName" asp-items="@ViewBag.ManufacturerNames" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит 3</b>
+</p>
+<p style="font-size:17px">
+    Знайти імена та пошти покупців, що придбали хоча б один продукт обжарювання В.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Query3">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                <label class="control-label">Вид обжарювання В</label>
+                <select asp-for="CoffeeRoastName" asp-items="@ViewBag.CoffeeRoastNames" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит 4</b>
+</p>
+<p style="font-size:17px">
+    Знайти назви виробників, які продають продукти вартістю не J у.о.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Query4">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label">Вартість продукту J</label>
+                <input maxlength="28" id="price" asp-for="ProductPrice" class="form-control" />
+                <span class="text-danger">@ViewBag.PriceError</span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит 5</b>
+</p>
+<p style="font-size:17px">
+    Знайти виробників, які не виробляють продукцію типу Y.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Query5">
+            @*<input type="hidden" asp-for="CoffeeTypeName" value="0" />*@
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                <label class="control-label">Тип Y</label>
+                <select asp-for="CoffeeTypeName" asp-items="@ViewBag.CoffeeTypeNames" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<h3>Множинні</h3>
+<hr />
+<p style="font-size:20px">
+    <b>Запит 1</b>
+</p>
+<p style="font-size:17px">
+    Знайти імена, прізвища та пошти покупців, які придбали точно ті ж самі товари, що й покупець з email Z.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="DifficultQuery1">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                <label class="control-label">Email Z</label>
+                <select asp-for="CustomerEmail" asp-items="@ViewBag.CustomerEmails" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит 2</b>
+</p>
+<p style="font-size:17px">
+    Знайти пошти покупців з прізвищем Z, що придбали всі продукти магазину
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="DifficultQuery2">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                <label class="control-label">Прізвище Z</label>
+                <select asp-for="CustomerLastName" asp-items="@ViewBag.CustomerLastNames" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит 3</b>
+</p>
+<p style="font-size:17px">
+    Знайти назви країн, виробники з яких виробляють каву принаймні всіх тих типів обжарювання, що і виробник з кодом Z.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="DifficultQuery3">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                <label class="control-label">Код виробника Z</label>
+                <select asp-for="ManufacturerId" asp-items="@ViewBag.ManufacturerIds" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит K</b>
+</p>
+<p style="font-size:17px">
+    Знайти максимальну ціну продукту, який купував покупець на прізвище Z.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="KQuery1">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                <label class="control-label">Прізвище покупця Z</label>
+                <select asp-for="CustomerLastName" asp-items="@ViewBag.CustomerLastNames" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+
+
+
+
+<h3>Запити від викладача</h3>
+<hr />
+<p style="font-size:20px">
+    <b>Запит 1</b>
+</p>
+<p style="font-size:17px">
+    .
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="TeacherQuery1">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+<p style="font-size:20px">
+    <b>Запит 2</b>
+</p>
+<p style="font-size:17px">
+    .
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="TeacherQuery2">
+            <input type="hidden" asp-for="ProductName" value="dummy" />
+            <input type="hidden" asp-for="ProductPrice" value="0" />
+            <div class="form-group">
+                
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Надіслати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+
+
+
+<form method="get" asp-controller="Home" asp-action="Index">
+    <input type="submit" class="btn btn-primary" value="На головну" />
+</form>
+
+@section scripts
+    {
+    <script>
+        window.addEventListener("load", function () {
+            if ('@ViewBag.ErrorFlag' == 1) {
+                document.getElementById("q4").scrollIntoView();
+            }
+            else if ('@ViewBag.ErrorFlag' == 2) {
+                document.getElementById("q5").scrollIntoView();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Довідка";
+}
+
+<h1>Довідка</h1>
+<hr />
+
+<p style="font-size:19px">
+    <a href="~/Manual/COFFEESHOP_Manual.docx" download="COFFEESHOP_Manual.docx">Завантажити керівництво користувача</a>
+</p>
+
+<form method="get" asp-controller="Home" asp-action="Index">
+    <p>
+        <input type="submit" class="btn btn-primary" value="На головну" />
+    </p>
+</form>

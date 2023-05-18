@@ -1,0 +1,326 @@
+﻿@model MyQuery
+
+@{
+    ViewData["Title"] = "Результат";
+}
+
+<h1>Результат</h1>
+<hr />
+
+@if (string.IsNullOrEmpty(Model.Error))
+{
+    @if (Model.QueryId.Equals("Q1"))
+    {
+        <p style="font-size:20px">
+            <b>Назви всіх продуктів виробника з ім'ям @Model.ManufacturerName</b>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Назва
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.ProductNames.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.ProductNames[i]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    else if (Model.QueryId.Equals("Q2"))
+    {
+        <p style="font-size:20px">
+            <b>Середня ціна продуктів виробника @Model.ManufacturerName:</b> @decimal.Round(Model.AveragePrice, 2, MidpointRounding.AwayFromZero)
+        </p>
+    }
+
+    else if (Model.QueryId.Equals("Q3"))
+    {
+        <p style="font-size:20px">
+            <b>Покупці, що придбали хоча б один товар обжарювання @Model.CoffeeRoastName</b>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Ім'я
+                    </th>
+                    <th>
+                        Прізвище
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.CustomerNames.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.CustomerNames[i]
+                        </td>
+                        <td>
+                            @Model.CustomerLastNames[i]
+                        </td>
+                        <td>
+                            @Model.CustomerEmails[i]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Model.QueryId.Equals("Q4"))
+    {
+        <p style="font-size:20px">
+            <b>Назви виробників, які продають продукти ціною не @Model.ProductPrice грн/кг.</b>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Назва
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.ManufacturerNames.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.ManufacturerNames[i]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Model.QueryId.Equals("Q5"))
+    {
+        <p style="font-size:20px">
+            <b>Назви виробників, які не продають продукти типу @Model.CoffeeTypeName</b>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Назва
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.ManufacturerNames.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.ManufacturerNames[i]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Model.QueryId.Equals("C1"))
+    {
+        <p style="font-size:20px">
+            <b>Прізвища покупців, які придбали точно ті ж самі продукти, що й покупець з email @Model.CustomerEmail</b>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Ім'я
+                    </th>
+                    <th>
+                        Прізвище
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.CustomerNames.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.CustomerNames[i]
+                        </td>
+                        <td>
+                            @Model.CustomerLastNames[i]
+                        </td>
+                        <td>
+                            @Model.CustomerEmails[i]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Model.QueryId.Equals("C2"))
+    {
+        <p style="font-size:20px">
+            <b>Пошти покупців з прізвищем @Model.CustomerLastName, які придбали всі наявні продукти</b>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Прізвище
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.CustomerLastNames.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.CustomerEmails[i]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    else if (Model.QueryId.Equals("C3"))
+    {
+        <p style="font-size:20px">
+            <b>Знайти назви країн, виробники з яких виробляють каву принаймні всіх тих типів обжарювання, що і виробник з кодом @Model.ManufacturerId</b>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Назва
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.CountryNames.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.CountryNames[i]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Model.QueryId.Equals("K1"))
+    {
+        <p style="font-size:20px">
+            <b>Максимальна продуктів покупця @Model.CustomerLastName:</b> @decimal.Round(Model.MaximumPrice, 2, MidpointRounding.AwayFromZero)
+        </p>
+
+
+    }
+
+
+    else if (Model.QueryId.Equals("T1"))
+    {
+        <p style="font-size:20px">
+            <b>   </b>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.CountryNames.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model.CountryNames[i]
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    }
+
+    else if (Model.QueryId.Equals("T2"))
+    {
+
+
+
+    }
+
+}
+
+
+else
+{
+    <p style="font-size:20px">
+        Результат запиту порожній.
+        <br />
+        Будь ласка, спробуйте ще раз з іншим параметром.
+    </p>
+}
+<table>
+    <tr>
+        <td>
+            <form method="get" asp-controller="Queries" asp-action="Index">
+                <input type="submit" class="btn btn-primary" value="Назад до запитів" />
+            </form>
+        </td>
+        @*<td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <form method="get" asp-controller="Home" asp-action="Index">
+                <input type="submit" class="btn btn-primary" value="На головну" />
+            </form>
+        </td>*@
+    </tr>
+</table>
+
+
+<div class="modal fade" id="error" tabindex="-1" role="alertdialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Повідомлення</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="errorText">
+                @Model.Error
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">ОК</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+    {
+    <script>
+        window.addEventListener("load", function () {
+            if ('@Model.ErrorFlag' == 1) {
+                $("#error").modal();
+            }
+        });
+    </script>
+}

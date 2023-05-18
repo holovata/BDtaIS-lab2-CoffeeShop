@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Головна";
+}
+
+<div class="text-center">
+    <h1 class="display-4">COFFEESHOP</h1>
+    <p>Оптовий магазин кави</p>
+</div>
+
+<form method="get" asp-controller="CoffeeRoasts" asp-action="Index">
+    <p align="center">
+        <input type="submit" class="btn btn-primary btn-lg" style="width:200px" value="Види обсмаження" />
+    </p>
+</form>
+
+<form method="get" asp-controller="CoffeeTypes" asp-action="Index">
+    <p align="center">
+        <input type="submit" class="btn btn-primary btn-lg" style="width:200px" value="Типи кави" />
+    </p>
+</form>
+
+<form method="get" asp-controller="Countries" asp-action="Index">
+    <p align="center">
+        <input type="submit" class="btn btn-primary btn-lg" style="width:200px" value="Країни" />
+    </p>
+</form>
+
+<form method="get" asp-controller="Customers" asp-action="Index">
+    <p align="center">
+        <input type="submit" class="btn btn-primary btn-lg" style="width:200px" value="Покупці" />
+    </p>
+</form>
+
+<form method="get" asp-controller="Manufacturers" asp-action="Index">
+    <p align="center">
+        <input type="submit" class="btn btn-primary btn-lg" style="width:200px" value="Виробники" />
+    </p>
+</form>
+
+<form method="get" asp-controller="Orders" asp-action="Index">
+    <p align="center">
+        <input type="submit" class="btn btn-primary btn-lg" style="width:200px" value="Замовлення" />
+    </p>
+</form>
+
+<form method="get" asp-controller="Products" asp-action="Index">
+    <p align="center">
+        <input type="submit" class="btn btn-primary btn-lg" style="width:200px" value="Продукція" />
+    </p>
+</form>
